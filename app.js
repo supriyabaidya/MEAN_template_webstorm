@@ -34,9 +34,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 app.get('/', function (req, res) {
-    res.json({
-        message: '"Template server started @3000 !" And "' + message + '"'
-    });
+    res.render('index', {title: 'Express'});
+    // res.json({
+    //     message: '"Template server started @3000 !" And "' + message + '"'
+    // });
     // res.send('"Template server started @3000 !" And "MongoDB Database connected successfully"');
 });
 
