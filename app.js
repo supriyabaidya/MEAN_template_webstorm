@@ -12,11 +12,13 @@ var config = require('./config');
 
 var app = express();
 
+var message;
 mongoose.connect(config.database, {useNewUrlParser: true}, (err) => {
     if (err) {
         console.error(err);
     } else {
         console.log('MongoDB Database connected successfully');
+        message = 'MongoDB Database connected successfully';
     }
 });
 
@@ -33,7 +35,7 @@ app.use(cors());
 
 app.get('/', function (req, res) {
     res.json({
-        message: '"Template server started @3000 !" And "MongoDB Database connected successfully"'
+        message: '"Template server started @3000 !" And "' + message + '"'
     });
     // res.send('"Template server started @3000 !" And "MongoDB Database connected successfully"');
 });
