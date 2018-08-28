@@ -47,12 +47,14 @@ app.get('/', function (req, res) {
 //     next(createError(404));
 // });
 
-// app.listen(config.port, (err) => {
-//     if (err) {
-//         console.error(err);
-//     } else {
-//         console.log('Template server started @' + config.port);
-//     }
-// });
+app.listen(config.port, (err) => {
+    if (err) {
+        console.error(err);
+    } else {
+        console.log('Template server started @' + config.port);
+    }
+});
 
-module.exports = app;
+// console.log('Template server started @' + process.env.HOSTNAME + ':' + config.port);
+
+// module.exports = app;
