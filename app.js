@@ -55,6 +55,4 @@ app.listen(config.port, (err) => {
     }
 });
 
-// console.log('Template server started @' + process.env.HOSTNAME + ':' + config.port);
-
 // module.exports = app;
