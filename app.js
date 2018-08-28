@@ -12,7 +12,7 @@ var config = require('./config');
 
 var app = express();
 
-mongoose.connect(config.database, (err) => {
+mongoose.connect(config.database, {useNewUrlParser: true}, (err) => {
     if (err) {
         console.error(err);
     } else {
