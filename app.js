@@ -13,12 +13,13 @@ var config = require('./config');
 var app = express();
 
 var message;
+var dbMessage;
 mongoose.connect(config.database, {useNewUrlParser: true}, (err) => {
     if (err) {
         console.error(err);
     } else {
-        console.log('MongoDB Database connected successfully');
-        message = 'MongoDB Database connected successfully';
+        dbMessage = 'MongoDB Database connected successfully';
+        console.log(dbMessage);
     }
 });
 
@@ -34,10 +35,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 app.get('/', function (req, res) {
-    res.render('index', {title: 'Express'});
-    // res.json({
-    //     message: '"Template server started @3000 !" And "' + message + '"'
-    // });
+    // res.render('index', {title: 'Express'});
+    res.json({
+        message: '"' + message + config.port + ' !" And "' + dbMessage + '"'
+    });
     // res.send('"Template server started @3000 !" And "MongoDB Database connected successfully"');
 });
 
@@ -52,7 +53,8 @@ app.listen(config.port, (err) => {
     if (err) {
         console.error(err);
     } else {
-        console.log('Template server started @' + config.port);
+        message = 'Template server started @';
+        console.log(message + config.port);
     }
 });
 
