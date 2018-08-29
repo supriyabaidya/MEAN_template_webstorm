@@ -40,7 +40,7 @@ app.use(cors());
 app.get('/', function (req, res) {
     // res.render('index', {title: 'Express'});
     res.json({
-        message: '"' + message + config.port + ' !" And "' + dbMessage + '"'
+        message: '"' + message + config.port + ' !!" And "' + dbMessage + '!!"'
     });
     // res.send('"Template server started @3000 !" And "MongoDB Database connected successfully"');
 });
@@ -52,7 +52,7 @@ app.get('/', function (req, res) {
 //     next(createError(404));
 // });
 // app.listen(port);
-app.listen(port, (err) => {
+app.listen(config.port, (err) => {
     if (err) {
         console.error(err);
     } else {
