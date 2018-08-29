@@ -12,9 +12,6 @@ var config = require('./config');
 
 var app = express();
 
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
-    ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
-
 var message;
 var dbMessage;
 mongoose.connect(config.database, {useNewUrlParser: true}, (err) => {
@@ -38,6 +35,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 app.get('/', function (req, res) {
+    res.render('index', {title: 'Express', version: '2.0'});
+});
+
+app.get('/test', function (req, res) {
     // res.render('index', {title: 'Express'});
     res.json({
         message: '"' + message + config.port + ' !!" And "' + dbMessage + '!!"'
@@ -51,7 +52,7 @@ app.get('/', function (req, res) {
 // app.use(function (req, res, next) {
 //     next(createError(404));
 // });
-// app.listen(port);
+
 app.listen(config.port, (err) => {
     if (err) {
         console.error(err);
