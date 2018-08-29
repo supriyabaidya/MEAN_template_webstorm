@@ -13,7 +13,7 @@ var config = require('./config');
 var app = express();
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
-ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+    ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
 var message;
 var dbMessage;
@@ -51,14 +51,14 @@ app.get('/', function (req, res) {
 // app.use(function (req, res, next) {
 //     next(createError(404));
 // });
-app.listen(port, ip);
-// app.listen(config.port, (err) => {
-//     if (err) {
-//         console.error(err);
-//     } else {
-//         message = 'Template server started @';
-//         console.log(message + config.port);
-//     }
-// });
+// app.listen(port);
+app.listen(port, (err) => {
+    if (err) {
+        console.error(err);
+    } else {
+        message = 'Template server started @';
+        console.log(message + config.port);
+    }
+});
 
 // module.exports = app;
