@@ -1,3 +1,5 @@
+// database configuration and
+// port configuration, in which the node js server will be running
 module.exports = {
     // database: 'mongodb://localhost:27017/test',
     // database: 'mongodb://userBEW:oyDKsqjVlvohncWP@mongodb:27017/sampledb',
