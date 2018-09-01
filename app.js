@@ -36,7 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 app.get('/', function (req, res) {
-    res.render('index', {title: 'Express', version: '2.2', dbMessage: dbMessage});
+    res.render('index', {title: 'Express', version: '2.3', dbMessage: dbMessage});
 });
 
 app.get('/test', function (req, res) {
