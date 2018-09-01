@@ -12,16 +12,17 @@ var config = require('./config');
 
 var app = express();
 
-var message;
-var dbMessage;
-mongoose.connect(config.database, {useNewUrlParser: true}, (err) => {
-    if (err) {
-        console.error(err);
-    } else {
-        dbMessage = 'MongoDB Database connected successfully';
-        console.log(dbMessage);
-    }
-});
+var message = '';
+var dbMessage = '';
+
+// mongoose.connect(config.database, {useNewUrlParser: true}, (err) => {
+//     if (err) {
+//         console.error(err);
+//     } else {
+//         dbMessage = 'MongoDB Database connected successfully';
+//         console.log(dbMessage);
+//     }
+// });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -35,7 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 app.get('/', function (req, res) {
-    res.render('index', {title: 'Express', version: '2.1'});
+    res.render('index', {title: 'Express', version: '2.2', dbMessage: dbMessage});
 });
 
 app.get('/test', function (req, res) {
@@ -44,6 +45,18 @@ app.get('/test', function (req, res) {
         message: '"' + message + config.port + ' !!" And "' + dbMessage + '!!"'
     });
     // res.send('"Template server started @3000 !" And "MongoDB Database connected successfully"');
+});
+
+app.get('/mongo_db', function (req, res) {
+    mongoose.connect(config.database, {useNewUrlParser: true}, (err) => {
+        if (err) {
+            console.error(err);
+        } else {
+            dbMessage = 'MongoDB Database connected successfully';
+            console.log(dbMessage);
+        }
+        res.redirect('/');
+    });
 });
 
 // app.use('/', appRoutes);
